@@ -1,0 +1,38 @@
+<section class="section">
+    <div class="buttons">
+        <button class="button is-info" (click)="uploader.click()">
+            Import
+        </button>
+        <button class="button is-link" (click)="downloadExcel()">
+            Export
+        </button>
+        <input (change)="uploadExcel()" #uploader style="visibility: hidden;" type="file" name="uploaded_file" id="">
+        <input (change)="uploadAvatar()" #avatar style="visibility: hidden;" type="file" name="uploaded_file" id="">
+    </div>
+    <table class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Mobile number</th>
+                <th>Description</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of data">
+                <td (dblclick)="onDbClick($event.target)" [attr.data-row]="user.id" data-field="name"
+                    (blur)="update($event.target)" [innerHTML]="user.name"></td>
+                <td (dblclick)="onDbClick($event.target)" [attr.data-row]="user.id" data-field="email_id"
+                    (blur)="update($event.target)" [innerHTML]="user.email_id"></td>
+                <td (dblclick)="onDbClick($event.target)" [attr.data-row]="user.id" data-field="mobile_number"
+                    (blur)="update($event.target)" [innerHTML]="user.mobile_number"></td>
+                <td (dblclick)="onDbClick($event.target)" [attr.data-row]="user.id" data-field="description"
+                    (blur)="update($event.target)" [innerHTML]="user.description"></td>
+                <td>
+                    <img (dblclick)="setUserId(user.id)" width="50" [src]="'http://localhost:8001'+user.image" alt="" srcset="">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
